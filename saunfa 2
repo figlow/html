@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        int n=word1.length();
+        int m=word2.length();
+        if(n==0||m==0)
+            return n+m;
+        int x[n+1][m+1];
+        for(int i=0;i<n+1;i++)
+             x[i][0]=i;
+        for(int j=0;j<m+1;j++)
+            x[0][j]=j;
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<m+1;j++){
+                int left=x[i-1][j]+1;
+                int right=x[i][j-1]+1;
+                int lr=x[i-1][j-1];
+                if(word1[i-1]!=word2[j-1])
+                    lr+=1;
+                x[i][j]=min(left,min(right,lr));
+            }
+        }
+        return x[n][m];
+        
+        
+
+        
+    }
+};
