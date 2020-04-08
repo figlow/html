@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int a=0;
+    
+    int movingCount(int m, int n, int k) {
+        vector<vector<int>>arr(m,vector<int>(n,0));
+        if(k==0)
+           return 1;
+        search(m,n,k,arr,0,0);
+        return a;
+   
+    }
+    void search(int m,int n,int k,vector<vector<int>>&arr,int i,int j){
+        if(i>=m||j>=n||j<0||i<0)
+            return; 
+        if(arr[i][j]==1)
+            return;
+            
+        if((i/10+i%10+j/10+j%10)>k)
+            return;
+        arr[i][j]=1;
+        a++;
+        
+        search(m,n,k,arr,i-1,j);
+        search(m,n,k,arr,i+1,j);
+        search(m,n,k,arr,i,j-1);
+        search(m,n,k,arr,i,j+1);
+    }
+
+    
+};
