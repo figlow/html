@@ -1,0 +1,36 @@
+
+class Solution {
+public:
+    string reverseWords(string s) {
+        int b=s.size()-1;
+        string m;
+        int i=0;
+        deque<string>c;
+        while(i<=b&&s[i]==' ')
+            ++i;
+        while(b>=i&&s[b]==' ')
+            --b;
+        while(i<=b){
+            if(m.size()&&s[i]==' '){
+                c.push_front(move(m));
+                m="";
+            }
+            else if(s[i]!=' '){
+                m+=s[i];
+             
+            }
+            ++i;
+        }
+        c.push_front(move(m));
+           
+        string ans;
+        while (!c.empty()) {
+            ans += c.front();
+            c.pop_front();
+            if (!c.empty()) ans += ' ';
+        }
+        return ans;
+
+
+    }
+};
