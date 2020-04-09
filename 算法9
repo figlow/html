@@ -1,0 +1,67 @@
+class Solution {
+public:
+    int nums = 0;
+    int movingCount(int m, int n, int k) {
+        vector<vector <int> > arr(m, vector<int>(n, 0));
+        if(k == 0)
+            return 1;
+        search(m, n, k, arr, 0, 0);
+        return nums;
+    }
+    void search(int m, int n, int k, vector<vector <int> >& arr, int i, int j){
+        if(i >= m || j >= n || i < 0 || j < 0)
+            return;
+        if(arr[i][j] == 1)
+            return;
+        if((i%10 + i/10 + j%10 + j/10) > k)
+            return;
+        arr[i][j] = 1;
+        nums++;
+        search(m, n, k, arr, i-1, j);
+        search(m, n, k, arr, i+1, j);
+        search(m, n, k, arr, i, j-1);
+        search(m, n, k, arr, i, j+1);
+    }
+};
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<vector<string>> v(n+1);
+        v[0].push_back("");
+        for(int i = 1; i <= n; i++){
+            for(int j = 0; j < i; j++){
+                for(string &str1 : v[j]){
+                    for(string &str2 : v[i-j-1])
+                        v[i].push_back("(" + str2 + ")" + str1);
+                }
+            }
+        }
+        return v[n];
+    }
+};
+class Solution {
+public:
+    vector<int> ans;
+    vector<int> inorderTraversal(TreeNode* root) {
+        if(root != NULL) {
+            inorderTraversal(root -> left);
+            ans.push_back(root -> val);
+            inorderTraversal(root -> right);
+        }
+        return ans;
+    }
+};
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int>ans;
+        if(root!=NULL){
+            inorderTraversal(root->left);
+            ans.push_back(root->val);
+            inorderTraversal(root->right);
+        }
+        return ans;
+
+
+    }
+};
