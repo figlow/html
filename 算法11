@@ -1,0 +1,29 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permute = function(nums) {
+    let n=nums.length
+    let a=[]
+    let b=[]
+    let abc=(a)=>{
+        if(a.length==n){
+          return b.push(a)
+        }
+        for(let i=0;i<n;i++){
+            if(!a.includes(nums[i])){
+                a.push(nums[i])
+                abc(a.slice())
+                a.pop()
+            }
+        }
+     
+
+         
+    }
+    abc(a)
+    return b
+
+
+
+};
